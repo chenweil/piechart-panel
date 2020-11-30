@@ -1,0 +1,88 @@
+<div class="editor-row">
+  <div class="section gf-form-group">
+    <h5 class="section-heading">一般</h5>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">类型</span>
+      <div class="gf-form-select-wrapper max-width-10">
+        <select class="gf-form-input" ng-model="ctrl.panel.pieType" ng-options="t for t in ['派', '甜甜圈']" ng-change="ctrl.render()"></select>
+      </div>
+    </div>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">单位</span>
+      <div class="gf-form-dropdown-typeahead width-10" ng-model="ctrl.panel.format" dropdown-typeahead="ctrl.unitFormats" dropdown-typeahead-on-select="ctrl.setUnitFormat($subItem)">
+      </div>
+    </div>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">值</span>
+      <div class="gf-form-select-wrapper max-width-10">
+        <select class="gf-form-input" ng-model="ctrl.panel.valueName" ng-options="v for v in ['min','max','avg', 'current', 'total']"
+          ng-change="ctrl.render()"></select>
+      </div>
+    </div>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">分频器宽度</span>
+      <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.strokeWidth" ng-change="ctrl.render()">
+    </div>
+  </div>
+
+  <div class="section gf-form-group">
+    <h5 class="section-heading">图例</h5>
+    <gf-form-switch class="gf-form" label="显示图例" label-class="width-11" checked="ctrl.panel.legend.show" on-change="ctrl.refresh()"></gf-form-switch>
+    <div class="gf-form">
+      <span class="gf-form-label width-11">位置</span>
+      <div class="gf-form-select-wrapper width-9">
+        <select class="gf-form-input" ng-model="ctrl.panel.legendType" ng-options="t for t in ['图上', '图下', '右侧']"
+          ng-change="ctrl.onLegendTypeChanged()"></select>
+      </div>
+    </div>
+    <div ng-if="ctrl.panel.legendType == '右侧'" class="gf-form">
+      <label class="gf-form-label width-11">宽</label>
+      <input type="number" class="gf-form-input max-width-5" placeholder="150" bs-tooltip="'为图例边表/块设置最小宽度'"
+        data-placement="right" ng-model="ctrl.panel.legend.sideWidth" ng-change="ctrl.render()" ng-model-onblur>
+    </div>
+    <div ng-if="ctrl.panel.legendType == '在图下'" class="gf-form">
+      <span class="gf-form-label width-11">图例断点</span>
+      <div class="gf-form-select-wrapper width-9">
+        <select class="gf-form-input" ng-model="ctrl.panel.breakPoint" ng-options="t for t in ['25%', '50%', '75%', '100%']"
+          ng-change="ctrl.render()"></select>
+      </div>
+    </div>
+    <div class="gf-form" ng-if="ctrl.panel.legendType === '图上'">
+      <span class="gf-form-label width-11">字号</span>
+      <div class="gf-form-select-wrapper width-9">
+        <select class="gf-form-input" ng-model="ctrl.panel.fontSize" ng-options="s for s in ['50%', '60%', '70%', '80%', '100%', '110%', '120%', '150%', '175%']"
+          ng-change="ctrl.render()"></select>
+      </div>
+    </div>
+    <gf-form-switch class="gf-form" label="图例值" label-class="width-11" checked="ctrl.panel.legend.values" on-change="ctrl.refresh()"></gf-form-switch>
+    <div class="gf-form" ng-show="ctrl.panel.legend.values">
+      <span class="gf-form-label width-11">值标题</span>
+      <input type="text" class="gf-form-input width-9" ng-model="ctrl.panel.legend.header" ng-change="ctrl.render()" ng-model-onblur
+        placeholder="覆盖">
+    </div>
+    <div class="gf-form" ng-show="ctrl.panel.legend.values">
+      <span class="gf-form-label width-11">值的小数</span>
+      <input type="number" class="gf-form-input width-9" ng-model="ctrl.panel.decimals" ng-change="ctrl.render()" ng-model-onblur
+        placeholder="自动">
+    </div>
+    <gf-form-switch class="gf-form" label="显示比例" label-class="width-11" checked="ctrl.panel.legend.percentage" on-change="ctrl.refresh()"></gf-form-switch>
+    <div class="gf-form" ng-show="ctrl.panel.legend.percentage">
+      <span class="gf-form-label width-11">百分比小数</span>
+      <input type="number" class="gf-form-input width-9" ng-model="ctrl.panel.legend.percentageDecimals" ng-change="ctrl.render()" ng-model-onblur placeholder="0">
+    </div>
+  </div>
+
+  <div class="section gf-form-group">
+    <h5 class="section-heading">混合(仅适用于百分比)</h5>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">阈值:</span>
+      <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.combine.threshold" ng-change="ctrl.render()">
+      <info-popover mode="right-absolute">组合所有小于指定百分比(从0到1)的片，例如，值为'0.03'将把所有小于或等于3%的片组合成一个片)。</info-popover>
+    </div>
+    <div class="gf-form">
+      <span class="gf-form-label width-8">标签</span>
+      <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.combine.label" ng-change="ctrl.render()">
+      <info-popover mode="right-absolute">为合并的片标记文本。</info-popover>
+    </div>
+  </div>
+</div>

@@ -141,7 +141,7 @@ angular.module('grafana.directives').directive('piechartLegend', (popoverSrv: an
       }
 
       function render() {
-        if (panel.legendType === 'On graph' || !panel.legend.show) {
+        if (panel.legendType === '图上' || !panel.legend.show) {
           $container.empty();
           elem.find('.piechart-legend').css('padding-top', 0);
           return;
@@ -162,14 +162,13 @@ angular.module('grafana.directives').directive('piechartLegend', (popoverSrv: an
 
         $container.empty();
 
-        const width = panel.legendType === 'Right side' && panel.legend.sideWidth ? panel.legend.sideWidth + 'px' : '';
-        const ieWidth =
-          panel.legendType === 'Right side' && panel.legend.sideWidth ? panel.legend.sideWidth - 1 + 'px' : '';
+        const width = panel.legendType === '右侧' && panel.legend.sideWidth ? panel.legend.sideWidth + 'px' : '';
+        const ieWidth = panel.legendType === '右侧' && panel.legend.sideWidth ? panel.legend.sideWidth - 1 + 'px' : '';
         elem.css('min-width', width);
         elem.css('width', ieWidth);
 
         const showValues = panel.legend.values || panel.legend.percentage;
-        const tableLayout = (panel.legendType === 'Under graph' || panel.legendType === 'Right side') && showValues;
+        const tableLayout = (panel.legendType === '图下' || panel.legendType === '右侧') && showValues;
 
         $container.toggleClass('piechart-legend-table', tableLayout);
 
@@ -270,7 +269,7 @@ angular.module('grafana.directives').directive('piechartLegend', (popoverSrv: an
           $container.append(seriesElements);
         }
 
-        if (panel.legendType === 'Under graph') {
+        if (panel.legendType === '图下') {
           addScrollbar();
         } else {
           destroyScrollbar();

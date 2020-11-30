@@ -10,7 +10,7 @@ export default function link(scope: any, elem: any, attrs: any, ctrl: any) {
   const $tooltip = $('<div id="tooltip">') as any;
 
   ctrl.events.on('render', () => {
-    if (panel.legendType === 'Right side') {
+    if (panel.legendType === '右侧') {
       render(false);
       setTimeout(() => {
         render(true);
@@ -21,11 +21,11 @@ export default function link(scope: any, elem: any, attrs: any, ctrl: any) {
   });
 
   function getLegendHeight(panelHeight: any) {
-    if (!ctrl.panel.legend.show || ctrl.panel.legendType === 'Right side' || ctrl.panel.legendType === 'On graph') {
+    if (!ctrl.panel.legend.show || ctrl.panel.legendType === '右侧' || ctrl.panel.legendType === '图上') {
       return 20;
     }
 
-    if ((ctrl.panel.legendType === 'Under graph' && ctrl.panel.legend.percentage) || ctrl.panel.legend.values) {
+    if ((ctrl.panel.legendType === '图下' && ctrl.panel.legend.percentage) || ctrl.panel.legend.values) {
       const breakPoint = parseInt(ctrl.panel.breakPoint, 10) / 100;
       const total = 23 + 20 * data.length;
       return Math.min(total, Math.floor(panelHeight * breakPoint));
@@ -54,7 +54,7 @@ export default function link(scope: any, elem: any, attrs: any, ctrl: any) {
   }
 
   function noDataPoints() {
-    const html = '<div class="datapoints-warning"><span class="small">No data points</span></div>';
+    const html = '<div class="datapoints-warning"><span class="small">没有数据点</span></div>';
     elem.html(html);
   }
 
@@ -90,7 +90,7 @@ export default function link(scope: any, elem: any, attrs: any, ctrl: any) {
             width: parseFloat(ctrl.panel.strokeWidth).toFixed(1),
           },
           label: {
-            show: ctrl.panel.legend.show && ctrl.panel.legendType === 'On graph',
+            show: ctrl.panel.legend.show && ctrl.panel.legendType === '图上',
             formatter: formatter,
           },
           highlight: {
@@ -108,7 +108,7 @@ export default function link(scope: any, elem: any, attrs: any, ctrl: any) {
       },
     };
 
-    if (panel.pieType === 'donut') {
+    if (panel.pieType === '甜甜圈') {
       options.series.pie.innerRadius = 0.5;
     }
 

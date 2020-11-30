@@ -21,7 +21,7 @@ class PieChartCtrl extends MetricsPanelCtrl {
     this.hiddenSeries = {};
 
     const panelDefaults = {
-      pieType: 'pie',
+      pieType: '派',
       legend: {
         show: true, // disable/enable legend
         values: true,
@@ -32,7 +32,7 @@ class PieChartCtrl extends MetricsPanelCtrl {
       targets: [{}],
       cacheTimeout: null,
       nullPointMode: 'connected',
-      legendType: 'Under graph',
+      legendType: '图下',
       breakPoint: '50%',
       aliasColors: {},
       format: 'short',
@@ -41,7 +41,7 @@ class PieChartCtrl extends MetricsPanelCtrl {
       fontSize: '80%',
       combine: {
         threshold: 0.0,
-        label: 'Others',
+        label: '其他',
       },
     };
 
@@ -58,7 +58,7 @@ class PieChartCtrl extends MetricsPanelCtrl {
   }
 
   onInitEditMode() {
-    this.addEditorTab('Options', 'public/plugins/grafana-piechart-panel/editor.html', 2);
+    this.addEditorTab('选项', 'public/plugins/grafana-piechart-panel/editor.html', 2);
     this.unitFormats = kbn.getUnitFormats();
   }
 
@@ -183,7 +183,7 @@ class PieChartCtrl extends MetricsPanelCtrl {
   setLegendWidthForLegacyBrowser() {
     // @ts-ignore
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-    if (isIE11 && this.panel.legendType === 'Right side' && !this.panel.legend.sideWidth) {
+    if (isIE11 && this.panel.legendType === '右侧' && !this.panel.legend.sideWidth) {
       this.panel.legend.sideWidth = 150;
     }
   }

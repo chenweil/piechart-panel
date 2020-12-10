@@ -2,6 +2,9 @@
 [![David Dependancy Status](https://david-dm.org/grafana/piechart-panel.svg)](https://david-dm.org/grafana/piechart-panel)
 [![David Dev Dependency Status](https://david-dm.org/grafana/piechart-panel/dev-status.svg)](https://david-dm.org/grafana/piechart-panel/?type=dev)
 
+# 本版本中文化了插件的内容
+  详情切换分之 chs-1.6.1
+
 Use the new grafana-cli tool to install piechart-panel from the commandline:
 
 ```
